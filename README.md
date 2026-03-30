@@ -1,97 +1,238 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# 📱 React Native Donation App
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+A cross-platform mobile application built with **React Native** that allows users to explore donation items by category and view detailed information about each cause.
 
-## Step 1: Start Metro
+The project demonstrates a clean and scalable mobile architecture with reusable UI components, structured navigation, centralized state management, and persistent storage.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+---
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+# 🚀 Features
 
-```sh
-# Using npm
+* Browse donation categories using horizontally scrollable tabs
+* View donation items filtered by category
+* Detailed donation information screen
+* Search UI component
+* Reusable UI components for consistent design
+* State persistence across app restarts
+* Clean navigation structure
+
+---
+
+# 📱 App Screens
+
+### Home
+
+`screens/Home/Home.js`
+
+* Category selector
+* Horizontally scrollable category tabs
+* Donation list filtered by selected category
+
+---
+
+### Donation Item Details
+
+`screens/DonationItemDetails/DonationItemDetails.js`
+
+* Displays selected donation information
+* Back navigation to Home
+* Donate button UI
+
+The donation button UI is present and can be connected to a payment gateway such as **Stripe or PayPal**.
+
+---
+
+# 🛠 Tech Stack
+
+Main technologies used in this project:
+
+| Technology       | Version |
+| ---------------- | ------- |
+| React            | 19.2.3  |
+| React Native     | 0.84.1  |
+| React Navigation | 7.x     |
+| Redux Toolkit    | 2.11.2  |
+| redux-persist    | 6.0.0   |
+| AsyncStorage     | 3.0.1   |
+| TypeScript       | 5.8.3   |
+
+---
+
+# 🏗 Architecture Overview
+
+The project follows a modular architecture that separates responsibilities across navigation, state management, and UI components.
+
+### Navigation
+
+Navigation logic is centralized inside:
+
+```
+navigation/MainNavigation.js
+```
+
+Routes are defined in:
+
+```
+navigation/Routes.js
+```
+
+This keeps routing logic organized and scalable.
+
+---
+
+### State Management
+
+Application state is managed using **Redux Toolkit** with feature-based slices.
+
+Example structure:
+
+```
+redux/
+ ├── store.js
+ └── reducers/
+      ├── User.js
+      ├── Categories.js
+      └── Donations.js
+```
+
+This ensures predictable state updates and maintainable data flow.
+
+---
+
+### State Persistence
+
+Application state persists across app restarts using **redux-persist**.
+
+Configuration:
+
+```
+redux/store.js
+```
+
+Connected in:
+
+```
+App.tsx
+```
+
+using `PersistGate`.
+
+---
+
+### Reusable UI Components
+
+The UI is built from modular reusable components located in:
+
+```
+components/
+```
+
+Examples include:
+
+* Header
+* Tab
+* Search
+* Badge
+* BackButton
+* SingleDonationItem
+* Button
+
+---
+
+# 📦 Mock Data
+
+Categories and donation data are currently seeded directly in Redux slices.
+
+This allows the app to run without a backend service. The data layer can later be replaced with API calls.
+
+---
+
+# ⚙️ Installation
+
+### Install dependencies
+
+```
+npm install
+```
+
+---
+
+### Run iOS
+
+```
+npx react-native run-ios
+```
+
+If native dependencies need installation:
+
+```
+cd ios
+pod install
+```
+
+---
+
+### Run Android
+
+```
+npx react-native run-android
+```
+
+---
+
+### Start Metro
+
+```
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+# 📂 Project Structure
 
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+App.tsx
+ ├── navigation/
+ │    ├── MainNavigation.js
+ │    └── Routes.js
+ │
+ ├── redux/
+ │    ├── store.js
+ │    └── reducers/
+ │
+ ├── screens/
+ │
+ ├── components/
+ │
+ └── assets/
+      ├── images
+      └── styles
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+# 🔮 Future Improvements
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Possible enhancements:
 
-```sh
-bundle install
-```
+* Connect categories and donations to a backend API
+* Implement search filtering logic
+* Integrate payment gateway for donations
+* Add authentication and user profiles
+* Add analytics and monitoring
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
-```
+# 👨‍💻 Author
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+**Nirav Valera**
 
-```sh
-# Using npm
-npm run ios
+Mobile Developer specializing in **iOS and React Native applications**.
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+# 📬 Contact
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+LinkedIn: [Nirav Valera](https://www.linkedin.com/in/nirav-valera/)

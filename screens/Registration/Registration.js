@@ -1,26 +1,37 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Pressable, ScrollView, View } from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
+import { ScrollView, View } from 'react-native';
 import Input from '../../components/Input/Input';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
-import { Routes } from '../../navigation/Routes';
+import BackButton from '../../components/BackButton/BackButton';
 
-const Login = ({ navigation }) => {
+const Registration = ({ navigation }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
+      <View style={style.backButton}>
+        <BackButton onPress={() => navigation.goBack()}></BackButton>
+      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.container}
       >
         <View style={globalStyle.margitBottom24}>
-          <Header title="Welcome Back" />
+          <Header title="Hello and Welcome" />
+        </View>
+        <View style={globalStyle.margitBottom24}>
+          <Input
+            label={'First & Last Name'}
+            placeholder={'Enter your first and last name'}
+            onChangeText={value => setEmail(value)}
+          />
         </View>
         <View style={globalStyle.margitBottom24}>
           <Input
@@ -40,19 +51,11 @@ const Login = ({ navigation }) => {
           />
         </View>
         <View style={globalStyle.margitBottom24}>
-          <Button title="Login" onPress={() => {}} />
+          <Button title="Register" onPress={() => {}} />
         </View>
-        <Pressable
-          style={style.registrationButton}
-          onPress={() => {
-            navigation.navigate(Routes.Registration);
-          }}
-        >
-          <Header title="Don’t have an account?" color={'#156CF7'} type={3} />
-        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Login;
+export default Registration;
